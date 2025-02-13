@@ -1,0 +1,20 @@
+:root {
+    --primary: #D4AF37;
+    --text-light: rgba(255, 255, 255, 0.9);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --bg-dark: #111111;
+    --bg-darker: #000000;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg-darker);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+}
