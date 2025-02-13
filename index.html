@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>L'impérial - Restaurant</title>
-  
+
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
@@ -29,7 +29,39 @@
   <!-- fichier de style global -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
 
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbarNav">
+    <div class="container">
+      <a class="navbar-brand" href="#home">
+        <img src="assets/img/logo.png" alt="Logo" height="60" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavCollapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Notre Histoire</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Notre Carte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#reservation">Réserver</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>
 </html>
