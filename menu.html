@@ -57,7 +57,29 @@
         </div>
     </div>
 </nav>
+<!-- Menu Section -->
+<section class="menu-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="menu-title" data-aos="fade-up">Notre Carte</h1>
+            <p class="menu-description" data-aos="fade-up" data-aos-delay="100">
+                Découvrez nos créations culinaires préparées avec passion et raffinement
+            </p>
+        </div>
 
+        <div class="menu-filters text-center mb-5" data-aos="fade-up">
+            <button class="active">Tous</button>
+            <button>Entrées</button>
+            <button>Plats</button>
+            <button>Cocktails</button>
+            <button>Desserts</button>
+        </div>
+
+        <div id="menuContainer" class="row">
+            <!-- Les éléments du menu seront injectés ici par JavaScript -->
+        </div>
+    </div>
+</section>
 <!-- Footer -->
 <footer class="footer">
     <div class="container">
@@ -84,5 +106,159 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Données du menu
+    const menuItems = [
+        {
+            category: 'Entrées',
+            name: 'Salade Mexicaine',
+            description: 'Un mélange savoureux de riz, poivrons croquants, maïs doux, thon tendre et haricots rouges.',
+            price: '16€',
+            image: 'assets/img/salade-mexicaine.jpg'
+        },
+        {
+            category: 'Entrées',
+            name: 'Crevettes PIL PIL',
+            description: 'Crevettes juteuses servies avec un duo de sauces tomate parfumée et sauce spéciale.',
+            price: '18€',
+            image: 'assets/img/crevettes.jpg'
+        },
+        {
+            category: 'Entrées',
+            name: 'Huîtres',
+            description: 'Huîtres fraîches servies avec leur sauce citron.',
+            price: '24€',
+            image: 'assets/img/huitres.jpg'
+        },
+        {
+            category: 'Plats',
+            name: 'Émincé de poulet',
+            description: 'Fines tranches de poulet fermier cuites à la perfection, servies avec leur garniture de saison.',
+            price: '26€',
+            image: 'assets/img/poulet.jpg'
+        },
+        {
+            category: 'Plats',
+            name: 'Émincé de bœuf',
+            description: 'Tendres lamelles de bœuf saisies à la plancha, accompagnées de légumes du marché.',
+            price: '28€',
+            image: 'assets/img/boeuf.jpg'
+        },
+        {
+            category: 'Plats',
+            name: 'Filets de saint-pierre froids',
+            description: 'Délicats filets de saint-pierre servis froids avec une vinaigrette aux agrumes et herbes fraîches.',
+            price: '32€',
+            image: 'assets/img/saint-pierre.jpg'
+        },
+        {
+            category: 'Cocktails',
+            name: 'Capitole',
+            description: 'Un cocktail rafraîchissant de jus d\'orange frais, citron pressé et sprite, agrémenté de menthe fraîche.',
+            price: '12€',
+            image: 'assets/img/capitole.jpg'
+        },
+        {
+            category: 'Cocktails',
+            name: 'Blue Lagoon',
+            description: 'Un cocktail glacé au sirop de Curaçao Bleu et Burn pour une expérience unique.',
+            price: '14€',
+            image: 'assets/img/blue-lagoon.jpg'
+        },
+        {
+            category: 'Cocktails',
+            name: 'Peachy',
+            description: 'Une combinaison fruitée d\'ananas, de pêche et d\'orange pour un moment de douceur.',
+            price: '12€',
+            image: 'assets/img/peachy.jpg'
+        },
+        {
+            category: 'Desserts',
+            name: 'Tarte au Citron',
+            description: 'Une tarte au citron traditionnelle avec sa meringue légère et croustillante.',
+            price: '10€',
+            image: 'assets/img/tarte-citron.jpg'
+        },
+        {
+            category: 'Desserts',
+            name: 'Tiramisu',
+            description: 'Notre tiramisu maison aux biscuits imbibés de café et sa crème mascarpone onctueuse.',
+            price: '12€',
+            image: 'assets/img/tiramisu.jpg'
+        },
+        {
+            category: 'Desserts',
+            name: 'Cheesecake Oreo',
+            description: 'Un cheesecake onctueux garni de biscuits Oreo, sur une base croustillante.',
+            price: '11€',
+            image: 'assets/img/cheesecake-oreo.jpg'
+        }
+    ];
+
+    // Fonction pour gérer les erreurs d'image
+    function handleImageError(img) {
+        img.onerror = null;
+        img.src = `data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250' fill='none'%3e%3crect width='300' height='250' fill='%23111111'/%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='DM Sans' font-size='14' fill='%23D4AF37'%3eImage non disponible%3c/text%3e%3c/svg%3e`;
+    }
+
+    // Fonction pour créer l'HTML d'un élément du menu
+    function createMenuItem(item) {
+        return `
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="menu-item">
+                    <img src="${item.image}" alt="${item.name}" onerror="handleImageError(this)">
+                    <div class="menu-item-content">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <span class="price">${item.price}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Fonction pour afficher les éléments du menu
+    function displayMenuItems(category = 'Tous') {
+        const menuContainer = document.getElementById('menuContainer');
+        const filteredItems = category === 'Tous' 
+            ? menuItems 
+            : menuItems.filter(item => item.category === category);
+        
+        menuContainer.innerHTML = filteredItems.map(createMenuItem).join('');
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser AOS seulement pour les éléments du header
+        AOS.init({
+            duration: 800,
+            offset: 50,
+            once: true
+        });
+
+        // Afficher tous les éléments au démarrage
+        displayMenuItems('Tous');
+
+        // Gestionnaire de filtres
+        const filterButtons = document.querySelectorAll('.menu-filters button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                displayMenuItems(this.textContent);
+            });
+        });
+
+        // Effet de scroll pour la navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
 </body>
 </html>
