@@ -114,17 +114,17 @@ Le projet comprend quatre fichiers principaux :
 ---
 
 ## 7. Arborescence du projet
-
-├─ assets/
-│   ├─ css/
-│   │   └─ style.css
-│   ├─ img/
-│   │   └─ (images du site)
-├─ index.html
-├─ menu.html
-├─ reservation.html
-└─ README.md
-
+```
+├── assets
+│   ├── css
+│   │    └── style.css
+│   ├── img
+│        └── (images du site)
+├── index.html
+├── menu.html
+├── reservation.html
+└── README.md
+```
 ## 8. Évolutions Possibles
 
 ### 8.1. Envoi d’emails : Connecter à un back-end (par exemple, Node.js ou PHP) pour envoyer de faux e-mails de confirmation.
